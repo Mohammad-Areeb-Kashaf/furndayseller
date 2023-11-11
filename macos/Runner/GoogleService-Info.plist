@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>821542283157-471d4auqm5tlf7ea0pu3a5odbfoqi6ss.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.821542283157-471d4auqm5tlf7ea0pu3a5odbfoqi6ss</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>821542283157-64gh4ljvpuo0fgsmgm9h1mjblik2tcin.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCIn1ljS0GsErsiC_GAIV1o2mW9aCnX7uk</string>
+	<key>GCM_SENDER_ID</key>
+	<string>821542283157</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.furnday.furndayseller.furndayseller.RunnerTests</string>
+	<key>PROJECT_ID</key>
+	<string>furnday-15bd6</string>
+	<key>STORAGE_BUCKET</key>
+	<string>furnday-15bd6.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:821542283157:ios:75da073e809f43a320789c</string>
+</dict>
+</plist>
