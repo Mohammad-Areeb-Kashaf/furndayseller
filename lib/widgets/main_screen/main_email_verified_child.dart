@@ -5,6 +5,16 @@ class MainEmailVerifiedChild extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold();
+    return Scaffold(
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () => FirebaseAuth.instance.signOut(),
+          child: const Text(
+            'Sign Out',
+            style: TextStyle(color: Colors.black),
+          ),
+        ),
+      ),
+    );
   }
 }

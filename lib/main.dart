@@ -48,12 +48,70 @@ class _MyAppState extends State<MyApp> {
         title: "FurnDay Seller",
         theme: ThemeData(
           textTheme: const TextTheme(
-            labelMedium: TextStyle(
+            displayLarge: TextStyle(
+              color: Color(0xff14181B),
+              fontSize: 64,
+            ),
+            displayMedium: TextStyle(
+              color: Color(0xff14181B),
+              fontSize: 44,
+            ),
+            displaySmall: TextStyle(
+              color: Color(0xff14181B),
+              fontSize: 36,
               fontWeight: FontWeight.w600,
-              color: kGreyTextColor,
+            ),
+            headlineLarge: TextStyle(
+              color: Color(0xff14181B),
+              fontSize: 32,
+              fontWeight: FontWeight.w600,
+            ),
+            headlineMedium: TextStyle(
+              color: Color(0xff14181B),
+              fontSize: 24,
+            ),
+            headlineSmall: TextStyle(
+              color: Color(0xff14181B),
+              fontSize: 24,
+              fontWeight: FontWeight.w500,
+            ),
+            titleLarge: TextStyle(
+              color: Color(0xff14181B),
+              fontSize: 22,
+              fontWeight: FontWeight.w500,
+            ),
+            titleMedium: TextStyle(
+              color: Colors.white,
+              fontSize: 18,
+            ),
+            titleSmall: TextStyle(
+              color: Colors.white,
+              fontSize: 16,
+              fontWeight: FontWeight.w500,
             ),
             labelLarge: TextStyle(
-              fontWeight: FontWeight.w900,
+              color: Color(0xff57636C),
+              fontSize: 16,
+            ),
+            labelMedium: TextStyle(
+              color: Color(0xff57636C),
+              fontSize: 14,
+            ),
+            labelSmall: TextStyle(
+              color: Color(0xff57636C),
+              fontSize: 12,
+            ),
+            bodyLarge: TextStyle(
+              color: Color(0xff14181B),
+              fontSize: 16,
+            ),
+            bodyMedium: TextStyle(
+              color: Color(0xff14181B),
+              fontSize: 14,
+            ),
+            bodySmall: TextStyle(
+              color: Color(0xff14181B),
+              fontSize: 12,
             ),
           ),
           listTileTheme: const ListTileThemeData(
