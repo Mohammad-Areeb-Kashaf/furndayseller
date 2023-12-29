@@ -8,7 +8,14 @@ class MainEmailNotVerifiedChild extends StatelessWidget {
     return Scaffold(
       body: Center(
         child: ElevatedButton(
-          onPressed: () => FirebaseAuth.instance.signOut(),
+          onPressed: () => FirebaseAuth.instance.signOut().then((value) {
+            context.mounted
+                ? Navigator.pushReplacement(
+                    context,
+                    CupertinoPageRoute(
+                        builder: (context) => const SignInScreen()))
+                : null;
+          }),
           child: const Text(
             'Sign Out',
             style: TextStyle(color: Colors.black),
