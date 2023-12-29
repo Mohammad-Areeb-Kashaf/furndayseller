@@ -1,4 +1,5 @@
 import 'package:furndayseller/constants.dart';
+import 'package:furndayseller/screens/auth_screens/sign_up_screen.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({Key? key}) : super(key: key);
@@ -11,7 +12,6 @@ class _SignInScreenState extends State<SignInScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xffF1F4F8),
       body: SafeArea(
         top: true,
         child: Align(
@@ -32,10 +32,12 @@ class _SignInScreenState extends State<SignInScreen> {
                 ),
                 Padding(
                   padding: const EdgeInsets.all(12),
-                  child: Material(
-                    elevation: 10,
-                    shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(8)),
+                  child: Container(
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10),
+                      shape: BoxShape.rectangle,
                     ),
                     child: Container(
                       width: double.infinity,
@@ -51,43 +53,47 @@ class _SignInScreenState extends State<SignInScreen> {
                           mainAxisSize: MainAxisSize.max,
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
-                            TextFormField(
-                              autofocus: true,
-                              obscureText: false,
-                              decoration: InputDecoration(
-                                labelText: 'Email',
-                                labelStyle:
-                                    Theme.of(context).textTheme.labelMedium,
-                                hintText: 'Enter your email',
-                                hintStyle:
-                                    Theme.of(context).textTheme.labelMedium,
-                                enabledBorder: OutlineInputBorder(
-                                  borderSide: const BorderSide(
-                                    width: 2,
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0, 10, 0, 10),
+                              child: TextFormField(
+                                autofocus: true,
+                                obscureText: false,
+                                decoration: InputDecoration(
+                                  labelText: 'Email',
+                                  labelStyle:
+                                      Theme.of(context).textTheme.labelMedium,
+                                  hintText: 'Enter your email',
+                                  hintStyle:
+                                      Theme.of(context).textTheme.labelMedium,
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide: const BorderSide(
+                                      width: 2,
+                                    ),
+                                    borderRadius: BorderRadius.circular(0),
                                   ),
-                                  borderRadius: BorderRadius.circular(0),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderSide: const BorderSide(
-                                    width: 2,
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide: const BorderSide(
+                                      width: 2,
+                                    ),
+                                    borderRadius: BorderRadius.circular(0),
                                   ),
-                                  borderRadius: BorderRadius.circular(0),
-                                ),
-                                errorBorder: OutlineInputBorder(
-                                  borderSide: const BorderSide(
-                                    width: 2,
+                                  errorBorder: OutlineInputBorder(
+                                    borderSide: const BorderSide(
+                                      width: 2,
+                                    ),
+                                    borderRadius: BorderRadius.circular(0),
                                   ),
-                                  borderRadius: BorderRadius.circular(0),
-                                ),
-                                focusedErrorBorder: OutlineInputBorder(
-                                  borderSide: const BorderSide(
-                                    width: 2,
+                                  focusedErrorBorder: OutlineInputBorder(
+                                    borderSide: const BorderSide(
+                                      width: 2,
+                                    ),
+                                    borderRadius: BorderRadius.circular(0),
                                   ),
-                                  borderRadius: BorderRadius.circular(0),
                                 ),
+                                style: Theme.of(context).textTheme.bodyMedium,
+                                keyboardType: TextInputType.emailAddress,
                               ),
-                              style: Theme.of(context).textTheme.bodyMedium,
-                              keyboardType: TextInputType.emailAddress,
                             ),
                             Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(
@@ -131,8 +137,8 @@ class _SignInScreenState extends State<SignInScreen> {
                             ),
                             Align(
                               alignment: const AlignmentDirectional(-1, 0),
-                              child: Form(
-                                autovalidateMode: AutovalidateMode.disabled,
+                              child: GestureDetector(
+                                onTap: () {},
                                 child: Text(
                                   'Forgot Password?',
                                   style: Theme.of(context).textTheme.bodySmall,
@@ -144,7 +150,7 @@ class _SignInScreenState extends State<SignInScreen> {
                                   0, 10, 0, 10),
                               child: ElevatedButton(
                                 onPressed: () {
-                                  print('Button pressed ...');
+                                  printInfo(info: "Sign In Button Pressed");
                                 },
                                 style: ButtonStyle(
                                   backgroundColor:
@@ -192,8 +198,8 @@ class _SignInScreenState extends State<SignInScreen> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 children: [
-                                  Form(
-                                    autovalidateMode: AutovalidateMode.disabled,
+                                  GestureDetector(
+                                    onTap: () {},
                                     child: Container(
                                       width: 40,
                                       height: 40,
@@ -209,8 +215,8 @@ class _SignInScreenState extends State<SignInScreen> {
                                     ),
                                   ),
                                   const SizedBox(width: 10),
-                                  Form(
-                                    autovalidateMode: AutovalidateMode.disabled,
+                                  GestureDetector(
+                                    onTap: () {},
                                     child: Container(
                                       width: 40,
                                       height: 40,
@@ -234,6 +240,41 @@ class _SignInScreenState extends State<SignInScreen> {
                     ),
                   ),
                 ),
+                Align(
+                  alignment: const AlignmentDirectional(0, 0),
+                  child: GestureDetector(
+                    onTap: () async {
+                      Navigator.pushReplacement(
+                          context,
+                          CupertinoPageRoute(
+                              builder: (context) => const SignUpScreen()));
+                    },
+                    child: RichText(
+                      text: TextSpan(
+                        children: [
+                          TextSpan(
+                            text: 'Don\'t have an account? ',
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium!
+                                .copyWith(
+                                  fontFamily: 'Readex Pro',
+                                  color: const Color(0xff14181B),
+                                  fontWeight: FontWeight.w500,
+                                ),
+                          ),
+                          const TextSpan(
+                            text: 'Sign Up',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          )
+                        ],
+                        style: Theme.of(context).textTheme.bodyMedium,
+                      ),
+                    ),
+                  ),
+                )
               ],
             ),
           ),

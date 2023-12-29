@@ -150,7 +150,7 @@ class _MyAppState extends State<MyApp> {
               900: Color(0xffEFA11A),
             },
           ),
-          scaffoldBackgroundColor: kWhiteBackground,
+          scaffoldBackgroundColor: const Color(0xffF1F4F8),
           appBarTheme: const AppBarTheme(
             titleTextStyle: TextStyle(
                 color: Colors.black, fontSize: 16, fontWeight: FontWeight.bold),
