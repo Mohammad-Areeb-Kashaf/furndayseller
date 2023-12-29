@@ -8,258 +8,202 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
+  final _auth = FirebaseAuth.instance;
+  final formKey = GlobalKey<FormState>();
+  bool isLoading = false;
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        top: true,
-        child: Align(
-          alignment: const AlignmentDirectional(0, 0),
-          child: Container(
-            decoration: const BoxDecoration(),
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Align(
-                  alignment: const AlignmentDirectional(0, 0),
-                  child: Text(
-                    'Sign Up',
-                    style: Theme.of(context).textTheme.titleLarge,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(12),
-                  child: Container(
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(10),
-                      shape: BoxShape.rectangle,
-                    ),
-                    child: Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(10, 10, 10, 10),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                0, 10, 0, 10),
-                            child: TextFormField(
-                              autofocus: true,
-                              obscureText: false,
-                              decoration: InputDecoration(
-                                labelText: 'Email',
-                                labelStyle:
-                                    Theme.of(context).textTheme.labelMedium,
-                                hintText: 'Enter your email',
-                                hintStyle:
-                                    Theme.of(context).textTheme.labelMedium,
-                                enabledBorder: OutlineInputBorder(
-                                  borderSide: const BorderSide(
-                                    width: 2,
-                                  ),
-                                  borderRadius: BorderRadius.circular(0),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderSide: const BorderSide(
-                                    width: 2,
-                                  ),
-                                  borderRadius: BorderRadius.circular(0),
-                                ),
-                                errorBorder: OutlineInputBorder(
-                                  borderSide: const BorderSide(
-                                    width: 2,
-                                  ),
-                                  borderRadius: BorderRadius.circular(0),
-                                ),
-                                focusedErrorBorder: OutlineInputBorder(
-                                  borderSide: const BorderSide(
-                                    width: 2,
-                                  ),
-                                  borderRadius: BorderRadius.circular(0),
-                                ),
-                              ),
-                              style: Theme.of(context).textTheme.bodyMedium,
-                              keyboardType: TextInputType.emailAddress,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                0, 10, 0, 10),
-                            child: TextFormField(
-                              decoration: InputDecoration(
-                                labelText: 'Password',
-                                labelStyle:
-                                    Theme.of(context).textTheme.labelMedium,
-                                hintText: 'Enter your password',
-                                hintStyle:
-                                    Theme.of(context).textTheme.labelMedium,
-                                enabledBorder: OutlineInputBorder(
-                                  borderSide: const BorderSide(
-                                    width: 2,
-                                  ),
-                                  borderRadius: BorderRadius.circular(0),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderSide: const BorderSide(
-                                    width: 2,
-                                  ),
-                                  borderRadius: BorderRadius.circular(0),
-                                ),
-                                errorBorder: OutlineInputBorder(
-                                  borderSide: const BorderSide(
-                                    width: 2,
-                                  ),
-                                  borderRadius: BorderRadius.circular(0),
-                                ),
-                                focusedErrorBorder: OutlineInputBorder(
-                                  borderSide: const BorderSide(
-                                    width: 2,
-                                  ),
-                                  borderRadius: BorderRadius.circular(0),
-                                ),
-                              ),
-                              style: Theme.of(context).textTheme.bodyMedium,
-                              keyboardType: TextInputType.visiblePassword,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                0, 10, 0, 10),
-                            child: ElevatedButton(
-                              onPressed: () {
-                                printInfo(info: "Sign Up Button Pressed");
-                              },
-                              style: ButtonStyle(
-                                backgroundColor:
-                                    MaterialStateProperty.all(kYellowColor),
-                                foregroundColor:
-                                    MaterialStateProperty.all(Colors.white),
-                                textStyle: MaterialStateProperty.all<TextStyle>(
-                                  Theme.of(context)
+    return InternetChecker(
+      child: LoadingOverlay(
+        isLoading: isLoading,
+        child: Scaffold(
+          body: SafeArea(
+            top: true,
+            child: Align(
+              alignment: const AlignmentDirectional(0, 0),
+              child: SingleChildScrollView(
+                child: Container(
+                  decoration: const BoxDecoration(),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Align(
+                        alignment: const AlignmentDirectional(0, 0),
+                        child: Text(
+                          'Sign Up',
+                          style: Theme.of(context).textTheme.titleLarge,
+                        ),
+                      ),
+                      AuthForm(
+                          isSignIn: false,
+                          formKey: formKey,
+                          onPressed: signUp,
+                          signInWithGoogle: signInWithGoogle,
+                          signInWithFacebook: signInWithFacebook),
+                      Align(
+                        alignment: const AlignmentDirectional(0, 0),
+                        child: GestureDetector(
+                          onTap: () async {
+                            Navigator.pushReplacement(
+                                context,
+                                CupertinoPageRoute(
+                                    builder: (context) =>
+                                        const SignInScreen()));
+                          },
+                          child: RichText(
+                            text: TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: 'Already have an account? ',
+                                  style: Theme.of(context)
                                       .textTheme
-                                      .titleSmall!
+                                      .bodyMedium!
                                       .copyWith(
                                         fontFamily: 'Readex Pro',
+                                        color: const Color(0xff14181B),
+                                        fontWeight: FontWeight.w500,
                                       ),
                                 ),
-                                elevation:
-                                    MaterialStateProperty.all<double>(3.0),
-                                side: MaterialStateProperty.all<BorderSide>(
-                                  const BorderSide(
-                                    color: Colors.transparent,
-                                    width: 1,
+                                const TextSpan(
+                                  text: 'Sign In',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
                                   ),
-                                ),
-                                shape: MaterialStateProperty.all(
-                                  RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                ),
-                              ),
-                              child: const Text('Sign Up'),
-                            ),
-                          ),
-                          Align(
-                            alignment: Alignment.center,
-                            child: Text(
-                              '--------OR--------',
+                                )
+                              ],
                               style: Theme.of(context).textTheme.bodyMedium,
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                0, 10, 0, 10),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                GestureDetector(
-                                  onTap: () {},
-                                  child: Container(
-                                    width: 40,
-                                    height: 40,
-                                    clipBehavior: Clip.antiAlias,
-                                    decoration: const BoxDecoration(
-                                      shape: BoxShape.circle,
-                                    ),
-                                    child: Image.asset(
-                                      'assets/images/google.png',
-                                      fit: BoxFit.scaleDown,
-                                      alignment: const Alignment(0, 0),
-                                    ),
-                                  ),
-                                ),
-                                const SizedBox(width: 10),
-                                GestureDetector(
-                                  onTap: () {},
-                                  child: Container(
-                                    width: 40,
-                                    height: 40,
-                                    clipBehavior: Clip.antiAlias,
-                                    decoration: const BoxDecoration(
-                                      shape: BoxShape.circle,
-                                    ),
-                                    child: Image.asset(
-                                      'assets/images/facebook.png',
-                                      fit: BoxFit.scaleDown,
-                                      alignment: const Alignment(0, 0),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
+                        ),
                       ),
-                    ),
+                    ],
                   ),
                 ),
-                Align(
-                  alignment: const AlignmentDirectional(0, 0),
-                  child: GestureDetector(
-                    onTap: () async {
-                      Navigator.pushReplacement(
-                          context,
-                          CupertinoPageRoute(
-                              builder: (context) => const SignInScreen()));
-                    },
-                    child: RichText(
-                      text: TextSpan(
-                        children: [
-                          TextSpan(
-                            text: 'Already have an account? ',
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyMedium!
-                                .copyWith(
-                                  fontFamily: 'Readex Pro',
-                                  color: const Color(0xff14181B),
-                                  fontWeight: FontWeight.w500,
-                                ),
-                          ),
-                          const TextSpan(
-                            text: 'Sign In',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                            ),
-                          )
-                        ],
-                        style: Theme.of(context).textTheme.bodyMedium,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
+              ),
             ),
           ),
         ),
       ),
     );
+  }
+
+  signUp({
+    required String name,
+    required String email,
+    required String password,
+  }) async {
+    setState(() {
+      isLoading = true;
+    });
+    try {
+      await _auth
+          .createUserWithEmailAndPassword(email: email, password: password)
+          .then((value) async {
+        await _auth.currentUser!.updateDisplayName(name);
+        formKey.currentState!.validate();
+        formKey.currentState!.reset();
+        await _auth.currentUser!.reload();
+        context.mounted
+            ? Navigator.pushReplacement(context,
+                CupertinoPageRoute(builder: (context) => const MainScreen()))
+            : null;
+      });
+    } on FirebaseAuthException catch (e) {
+      printError(info: e.toString());
+      setState(() {
+        AuthForm.authError = e.toString();
+        formKey.currentState!.validate();
+      });
+    }
+    setState(() {
+      isLoading = false;
+    });
+  }
+
+  signInWithGoogle() async {
+    try {
+      setState(() {
+        isLoading = true;
+      });
+      final auth = FirebaseAuth.instance;
+      final GoogleSignInAccount? googleUser =
+          await GoogleSignIn(scopes: ['email']).signIn();
+
+      final GoogleSignInAuthentication googleAuth =
+          await googleUser!.authentication;
+
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
+      await auth.signInWithCredential(credential);
+      context.mounted
+          ? Navigator.pushReplacement(context,
+              CupertinoPageRoute(builder: (context) => const MainScreen()))
+          : null;
+      setState(() {
+        isLoading = false;
+      });
+    } catch (e) {
+      setState(() {
+        isLoading = true;
+      });
+      NetworkStatusService().checkInternet();
+      printError(info: e.toString());
+      context.mounted
+          ? Navigator.pushReplacement(context,
+              CupertinoPageRoute(builder: (context) => const MainScreen()))
+          : null;
+      setState(() {
+        isLoading = false;
+      });
+    }
+  }
+
+  signInWithFacebook() async {
+    try {
+      setState(() {
+        isLoading = true;
+      });
+      final LoginResult result = await FacebookAuth.instance.login();
+      if (result.status == LoginStatus.success) {
+        final AccessToken accessToken = result.accessToken!;
+
+        if (accessToken.token.isNotEmpty) {
+          final OAuthCredential credential =
+              FacebookAuthProvider.credential(result.accessToken!.token);
+          await _auth.signInWithCredential(credential);
+          context.mounted
+              ? Navigator.pushReplacement(context,
+                  CupertinoPageRoute(builder: (context) => const MainScreen()))
+              : null;
+          setState(() {
+            isLoading = false;
+          });
+        } else {
+          setState(() {
+            isLoading = false;
+          });
+        }
+      } else {
+        printInfo(info: result.status.toString());
+        printInfo(info: result.message.toString());
+        context.mounted
+            ? Navigator.pushReplacement(context,
+                CupertinoPageRoute(builder: (context) => const MainScreen()))
+            : null;
+        setState(() {
+          isLoading = false;
+        });
+      }
+    } catch (e) {
+      printError(info: e.toString());
+      setState(() {
+        isLoading = false;
+      });
+    }
   }
 }

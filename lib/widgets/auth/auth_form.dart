@@ -86,6 +86,7 @@ class _AuthFormState extends State<AuthForm> {
                           : 'Password',
                       hintText: 'Enter your Password',
                       validate: validatePassword,
+                      obscureText: true,
                     ),
                   ),
                   widget.isSignIn == false
@@ -98,6 +99,7 @@ class _AuthFormState extends State<AuthForm> {
                             labelText: 'Confirm Password',
                             hintText: 'Enter your Password',
                             validate: validatePassword,
+                            obscureText: true,
                           ),
                         )
                       : const SizedBox.shrink(),
