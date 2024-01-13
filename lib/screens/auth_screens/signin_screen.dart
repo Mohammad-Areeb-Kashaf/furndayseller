@@ -1,4 +1,5 @@
 import 'package:furndayseller/constants.dart';
+import 'package:furndayseller/widgets/auth/auth_layout_widget.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({Key? key}) : super(key: key);
@@ -14,81 +15,55 @@ class _SignInScreenState extends State<SignInScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return InternetChecker(
-      child: LoadingOverlay(
+    return LoadingOverlay(
         isLoading: isLoading,
-        child: Scaffold(
-          body: SafeArea(
-            top: true,
-            child: Align(
-              alignment: const AlignmentDirectional(0, 0),
-              child: SingleChildScrollView(
-                child: Container(
-                  decoration: const BoxDecoration(),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Align(
-                        alignment: const AlignmentDirectional(0, 0),
-                        child: Text(
-                          'Sign In',
-                          style: Theme.of(context).textTheme.titleLarge,
-                        ),
-                      ),
-                      AuthForm(
-                        formKey: formKey,
-                        isSignIn: true,
-                        onPressed: signIn,
-                        signInWithGoogle: signInWithGoogle,
-                        signInWithFacebook: signInWithFacebook,
-                      ),
-                      Align(
-                        alignment: const AlignmentDirectional(0, 0),
-                        child: GestureDetector(
-                          onTap: () async {
-                            Navigator.pushReplacement(
-                                context,
-                                CupertinoPageRoute(
-                                    builder: (context) =>
-                                        const SignUpScreen()));
-                          },
-                          child: RichText(
-                            text: TextSpan(
-                              children: [
-                                TextSpan(
-                                  text: 'Don\'t have an account? ',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyMedium!
-                                      .copyWith(
-                                        fontFamily: 'Readex Pro',
-                                        color: const Color(0xff14181B),
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                ),
-                                const TextSpan(
-                                  text: 'Sign Up',
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
+        child: AuthLayoutWidget(
+          labelText: "Sign In",
+          children: Column(
+            children: [
+              AuthForm(
+                formKey: formKey,
+                isSignIn: true,
+                onPressed: signIn,
+                signInWithGoogle: signInWithGoogle,
+                signInWithFacebook: signInWithFacebook,
+              ),
+              Align(
+                alignment: const AlignmentDirectional(0, 0),
+                child: GestureDetector(
+                  onTap: () async {
+                    Navigator.pushReplacement(
+                        context,
+                        CupertinoPageRoute(
+                            builder: (context) => const SignUpScreen()));
+                  },
+                  child: RichText(
+                    text: TextSpan(
+                      children: [
+                        TextSpan(
+                          text: 'Don\'t have an account? ',
+                          style:
+                              Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                    fontFamily: 'Readex Pro',
+                                    color: const Color(0xff14181B),
+                                    fontWeight: FontWeight.w500,
                                   ),
-                                )
-                              ],
-                              style: Theme.of(context).textTheme.bodyMedium,
-                            ),
-                          ),
                         ),
-                      )
-                    ],
+                        const TextSpan(
+                          text: 'Sign Up',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        )
+                      ],
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
                   ),
                 ),
-              ),
-            ),
+              )
+            ],
           ),
-        ),
-      ),
-    );
+        ));
   }
 
   signIn({
