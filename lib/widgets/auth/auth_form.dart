@@ -103,16 +103,18 @@ class _AuthFormState extends State<AuthForm> {
                           ),
                         )
                       : const SizedBox.shrink(),
-                  Align(
-                    alignment: const AlignmentDirectional(-1, 0),
-                    child: GestureDetector(
-                      onTap: () {},
-                      child: Text(
-                        'Forgot Password?',
-                        style: Theme.of(context).textTheme.bodySmall,
-                      ),
-                    ),
-                  ),
+                  widget.isSignIn
+                      ? Align(
+                          alignment: const AlignmentDirectional(-1, 0),
+                          child: GestureDetector(
+                            onTap: () {},
+                            child: Text(
+                              'Forgot Password?',
+                              style: Theme.of(context).textTheme.bodySmall,
+                            ),
+                          ),
+                        )
+                      : const SizedBox.shrink(),
                   Padding(
                     padding: const EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
                     child: ElevatedButton(
@@ -153,7 +155,7 @@ class _AuthFormState extends State<AuthForm> {
                           ),
                         ),
                       ),
-                      child: const Text('Sign In'),
+                      child: Text(widget.isSignIn ? 'Sign In' : 'Sign Up'),
                     ),
                   ),
                   Row(

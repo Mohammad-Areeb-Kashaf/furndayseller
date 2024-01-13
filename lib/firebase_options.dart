@@ -17,7 +17,10 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      return web;
+      throw UnsupportedError(
+        'DefaultFirebaseOptions have not been configured for web - '
+        'you can reconfigure this by running the FlutterFire CLI again.',
+      );
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -25,7 +28,10 @@ class DefaultFirebaseOptions {
       case TargetPlatform.iOS:
         return ios;
       case TargetPlatform.macOS:
-        return macos;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for macos - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
@@ -43,19 +49,9 @@ class DefaultFirebaseOptions {
     }
   }
 
-  static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyB1hFnZtP-7BiPFDQTGhKMLulAGQ8jC-wY',
-    appId: '1:821542283157:web:af6d433fa7ea924a20789c',
-    messagingSenderId: '821542283157',
-    projectId: 'furnday-15bd6',
-    authDomain: 'furnday-15bd6.firebaseapp.com',
-    storageBucket: 'furnday-15bd6.appspot.com',
-    measurementId: 'G-38C19HDPS7',
-  );
-
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyBsal8L742RlUQgfxwLWjTVAasw8uCFbuU',
-    appId: '1:821542283157:android:6c34f4192006100920789c',
+    appId: '1:821542283157:android:9efbc47735c8cd6320789c',
     messagingSenderId: '821542283157',
     projectId: 'furnday-15bd6',
     storageBucket: 'furnday-15bd6.appspot.com',
@@ -63,23 +59,12 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyCIn1ljS0GsErsiC_GAIV1o2mW9aCnX7uk',
-    appId: '1:821542283157:ios:f99c231302a9be3520789c',
+    appId: '1:821542283157:ios:ae8fd2770d7b56ab20789c',
     messagingSenderId: '821542283157',
     projectId: 'furnday-15bd6',
     storageBucket: 'furnday-15bd6.appspot.com',
-    androidClientId: '821542283157-64gh4ljvpuo0fgsmgm9h1mjblik2tcin.apps.googleusercontent.com',
+    androidClientId: '821542283157-4upjkpfbfjgachvvacerbdmkvt9319od.apps.googleusercontent.com',
     iosClientId: '821542283157-vn1o28dq35bin591fu8uk9nllam4d57n.apps.googleusercontent.com',
     iosBundleId: 'com.furnday.furndayseller.furndayseller',
-  );
-
-  static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyCIn1ljS0GsErsiC_GAIV1o2mW9aCnX7uk',
-    appId: '1:821542283157:ios:75da073e809f43a320789c',
-    messagingSenderId: '821542283157',
-    projectId: 'furnday-15bd6',
-    storageBucket: 'furnday-15bd6.appspot.com',
-    androidClientId: '821542283157-64gh4ljvpuo0fgsmgm9h1mjblik2tcin.apps.googleusercontent.com',
-    iosClientId: '821542283157-471d4auqm5tlf7ea0pu3a5odbfoqi6ss.apps.googleusercontent.com',
-    iosBundleId: 'com.furnday.furndayseller.furndayseller.RunnerTests',
   );
 }

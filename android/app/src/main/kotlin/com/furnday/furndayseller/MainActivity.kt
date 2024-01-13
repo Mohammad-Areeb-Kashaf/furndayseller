@@ -1,4 +1,4 @@
-package com.furnday.furndayseller.furndayseller
+package com.furnday.furndayseller
 
 import io.flutter.embedding.android.FlutterActivity
 

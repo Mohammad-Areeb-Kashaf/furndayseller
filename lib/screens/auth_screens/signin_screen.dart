@@ -152,12 +152,14 @@ class _SignInScreenState extends State<SignInScreen> {
         setState(() {
           isLoading = false;
         });
-        Get.showSnackbar(const GetSnackBar(
-          title: "Sign In Success",
-          message: "Sign in using Google is successfull",
-          borderRadius: 20,
-          duration: Duration(seconds: 3),
-        ));
+        Get.showSnackbar(
+          const GetSnackBar(
+            title: "Sign In Success",
+            message: "Sign in using Google is successful",
+            borderRadius: 20,
+            duration: Duration(seconds: 3),
+          ),
+        );
       }
     } catch (e) {
       setState(() {
@@ -166,10 +168,6 @@ class _SignInScreenState extends State<SignInScreen> {
 
       NetworkStatusService().checkInternet();
       printError(info: e.toString());
-      context.mounted
-          ? Navigator.pushReplacement(context,
-              CupertinoPageRoute(builder: (context) => const MainScreen()))
-          : null;
       setState(() {
         isLoading = false;
       });

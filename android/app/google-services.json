@@ -39,10 +39,10 @@
               "client_type": 3
             },
             {
-              "client_id": "821542283157-9dv4eniqp6ok5il6bd9dl8c2dkn7632g.apps.googleusercontent.com",
+              "client_id": "821542283157-471d4auqm5tlf7ea0pu3a5odbfoqi6ss.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.furnday.furnday"
+                "bundle_id": "com.furnday.furndayseller.furndayseller.RunnerTests"
               }
             }
           ]
@@ -51,9 +51,9 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:821542283157:android:6c34f4192006100920789c",
+        "mobilesdk_app_id": "1:821542283157:android:9efbc47735c8cd6320789c",
         "android_client_info": {
-          "package_name": "com.furnday.furndayseller.furndayseller"
+          "package_name": "com.furnday.furndayseller"
         }
       },
       "oauth_client": [
@@ -75,10 +75,10 @@
               "client_type": 3
             },
             {
-              "client_id": "821542283157-9dv4eniqp6ok5il6bd9dl8c2dkn7632g.apps.googleusercontent.com",
+              "client_id": "821542283157-471d4auqm5tlf7ea0pu3a5odbfoqi6ss.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.furnday.furnday"
+                "bundle_id": "com.furnday.furndayseller.furndayseller.RunnerTests"
               }
             }
           ]
