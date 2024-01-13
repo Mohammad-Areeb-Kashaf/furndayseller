@@ -1,4 +1,5 @@
 import 'package:furndayseller/constants.dart';
+import 'package:furndayseller/widgets/auth/auth_layout_widget.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -14,77 +15,51 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return InternetChecker(
-      child: LoadingOverlay(
-        isLoading: isLoading,
-        child: Scaffold(
-          body: SafeArea(
-            top: true,
-            child: Align(
+    return LoadingOverlay(
+      isLoading: isLoading,
+      child: AuthLayoutWidget(
+        labelText: "Sign Up",
+        children: Column(
+          children: [
+            AuthForm(
+                isSignIn: false,
+                formKey: formKey,
+                onPressed: signUp,
+                signInWithGoogle: signInWithGoogle,
+                signInWithFacebook: signInWithFacebook),
+            Align(
               alignment: const AlignmentDirectional(0, 0),
-              child: SingleChildScrollView(
-                child: Container(
-                  decoration: const BoxDecoration(),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
+              child: GestureDetector(
+                onTap: () async {
+                  Navigator.pushReplacement(
+                      context,
+                      CupertinoPageRoute(
+                          builder: (context) => const SignInScreen()));
+                },
+                child: RichText(
+                  text: TextSpan(
                     children: [
-                      Align(
-                        alignment: const AlignmentDirectional(0, 0),
-                        child: Text(
-                          'Sign Up',
-                          style: Theme.of(context).textTheme.titleLarge,
-                        ),
-                      ),
-                      AuthForm(
-                          isSignIn: false,
-                          formKey: formKey,
-                          onPressed: signUp,
-                          signInWithGoogle: signInWithGoogle,
-                          signInWithFacebook: signInWithFacebook),
-                      Align(
-                        alignment: const AlignmentDirectional(0, 0),
-                        child: GestureDetector(
-                          onTap: () async {
-                            Navigator.pushReplacement(
-                                context,
-                                CupertinoPageRoute(
-                                    builder: (context) =>
-                                        const SignInScreen()));
-                          },
-                          child: RichText(
-                            text: TextSpan(
-                              children: [
-                                TextSpan(
-                                  text: 'Already have an account? ',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyMedium!
-                                      .copyWith(
-                                        fontFamily: 'Readex Pro',
-                                        color: const Color(0xff14181B),
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                ),
-                                const TextSpan(
-                                  text: 'Sign In',
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                )
-                              ],
-                              style: Theme.of(context).textTheme.bodyMedium,
+                      TextSpan(
+                        text: 'Already have an account? ',
+                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                              fontFamily: 'Readex Pro',
+                              color: const Color(0xff14181B),
+                              fontWeight: FontWeight.w500,
                             ),
-                          ),
-                        ),
                       ),
+                      const TextSpan(
+                        text: 'Sign In',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      )
                     ],
+                    style: Theme.of(context).textTheme.bodyMedium,
                   ),
                 ),
               ),
             ),
-          ),
+          ],
         ),
       ),
     );
