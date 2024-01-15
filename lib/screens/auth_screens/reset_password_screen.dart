@@ -26,7 +26,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
             ? Text(
                 'We have sent a reset password link to your email.',
                 textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.labelLarge!,
+                style: Theme.of(context).textTheme.labelMedium,
               )
             : Form(
                 key: formKey,
