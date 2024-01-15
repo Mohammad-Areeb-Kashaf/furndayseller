@@ -12,7 +12,7 @@ class MainEmailNotVerifiedChild extends StatelessWidget {
             context.mounted
                 ? Navigator.pushReplacement(
                     context,
-                    CupertinoPageRoute(
+                    MaterialPageRoute(
                         builder: (context) => const SignInScreen()))
                 : null;
           }),

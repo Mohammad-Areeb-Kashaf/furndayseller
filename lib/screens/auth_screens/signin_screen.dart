@@ -16,10 +16,12 @@ class _SignInScreenState extends State<SignInScreen> {
   @override
   Widget build(BuildContext context) {
     return LoadingOverlay(
-        isLoading: isLoading,
-        child: AuthLayoutWidget(
-          labelText: "Sign In",
-          children: Column(
+      isLoading: isLoading,
+      child: AuthLayoutWidget(
+        labelText: "Sign In",
+        children: Padding(
+          padding: const EdgeInsets.fromLTRB(0, 0, 0, 10.0),
+          child: Column(
             children: [
               AuthForm(
                 formKey: formKey,
@@ -34,7 +36,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   onTap: () async {
                     Navigator.pushReplacement(
                         context,
-                        CupertinoPageRoute(
+                        MaterialPageRoute(
                             builder: (context) => const SignUpScreen()));
                   },
                   child: RichText(
@@ -63,7 +65,9 @@ class _SignInScreenState extends State<SignInScreen> {
               )
             ],
           ),
-        ));
+        ),
+      ),
+    );
   }
 
   signIn({
@@ -85,7 +89,7 @@ class _SignInScreenState extends State<SignInScreen> {
       );
       context.mounted
           ? Navigator.pushReplacement(context,
-              CupertinoPageRoute(builder: (context) => const MainScreen()))
+              MaterialPageRoute(builder: (context) => const MainScreen()))
           : null;
     } on FirebaseAuthException catch (e) {
       printError(info: e.toString());
@@ -121,7 +125,7 @@ class _SignInScreenState extends State<SignInScreen> {
         await auth.signInWithCredential(credential);
         context.mounted
             ? Navigator.pushReplacement(context,
-                CupertinoPageRoute(builder: (context) => const MainScreen()))
+                MaterialPageRoute(builder: (context) => const MainScreen()))
             : null;
 
         setState(() {
@@ -164,7 +168,7 @@ class _SignInScreenState extends State<SignInScreen> {
           await _auth.signInWithCredential(credential);
           context.mounted
               ? Navigator.pushReplacement(context,
-                  CupertinoPageRoute(builder: (context) => const MainScreen()))
+                  MaterialPageRoute(builder: (context) => const MainScreen()))
               : null;
           setState(() {
             isLoading = false;

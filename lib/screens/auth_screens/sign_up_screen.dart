@@ -33,7 +33,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 onTap: () async {
                   Navigator.pushReplacement(
                       context,
-                      CupertinoPageRoute(
+                      MaterialPageRoute(
                           builder: (context) => const SignInScreen()));
                 },
                 child: RichText(
@@ -83,7 +83,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         await _auth.currentUser!.reload();
         context.mounted
             ? Navigator.pushReplacement(context,
-                CupertinoPageRoute(builder: (context) => const MainScreen()))
+                MaterialPageRoute(builder: (context) => const MainScreen()))
             : null;
       });
     } on FirebaseAuthException catch (e) {
@@ -117,7 +117,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       await auth.signInWithCredential(credential);
       context.mounted
           ? Navigator.pushReplacement(context,
-              CupertinoPageRoute(builder: (context) => const MainScreen()))
+              MaterialPageRoute(builder: (context) => const MainScreen()))
           : null;
       setState(() {
         isLoading = false;
@@ -130,7 +130,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       printError(info: e.toString());
       context.mounted
           ? Navigator.pushReplacement(context,
-              CupertinoPageRoute(builder: (context) => const MainScreen()))
+              MaterialPageRoute(builder: (context) => const MainScreen()))
           : null;
       setState(() {
         isLoading = false;
@@ -153,7 +153,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           await _auth.signInWithCredential(credential);
           context.mounted
               ? Navigator.pushReplacement(context,
-                  CupertinoPageRoute(builder: (context) => const MainScreen()))
+                  MaterialPageRoute(builder: (context) => const MainScreen()))
               : null;
           setState(() {
             isLoading = false;
@@ -168,7 +168,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         printInfo(info: result.message.toString());
         context.mounted
             ? Navigator.pushReplacement(context,
-                CupertinoPageRoute(builder: (context) => const MainScreen()))
+                MaterialPageRoute(builder: (context) => const MainScreen()))
             : null;
         setState(() {
           isLoading = false;

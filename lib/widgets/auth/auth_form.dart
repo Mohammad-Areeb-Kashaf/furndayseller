@@ -1,4 +1,5 @@
 import 'package:furndayseller/constants.dart';
+import 'package:furndayseller/screens/auth_screens/reset_password_screen.dart';
 
 class AuthForm extends StatefulWidget {
   const AuthForm(
@@ -32,186 +33,168 @@ class _AuthFormState extends State<AuthForm> {
     return Form(
       key: widget.formKey,
       child: Padding(
-        padding: const EdgeInsets.all(12),
-        child: Container(
-          width: double.infinity,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(10),
-            shape: BoxShape.rectangle,
-          ),
-          child: Container(
-            width: double.infinity,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(10),
-              shape: BoxShape.rectangle,
-            ),
-            child: Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(10, 10, 10, 10),
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  widget.isSignIn == false
-                      ? Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              0, 10, 0, 10),
-                          child: AuthTextField(
-                            controller: nameController,
-                            keyboardType: TextInputType.name,
-                            labelText: 'Name',
-                            hintText: 'Enter your Name',
-                            validate: validateName,
-                          ),
-                        )
-                      : const SizedBox.shrink(),
-                  Padding(
+        padding: const EdgeInsetsDirectional.fromSTEB(10, 10, 10, 10),
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            widget.isSignIn == false
+                ? Padding(
                     padding: const EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
                     child: AuthTextField(
-                      controller: emailController,
-                      keyboardType: TextInputType.emailAddress,
-                      labelText: 'Email',
-                      hintText: 'Enter your Email',
-                      validate: validateEmail,
+                      controller: nameController,
+                      keyboardType: TextInputType.name,
+                      labelText: 'Name',
+                      hintText: 'Enter your Name',
+                      validate: validateName,
                     ),
-                  ),
-                  Padding(
+                  )
+                : const SizedBox.shrink(),
+            Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
+              child: AuthTextField(
+                controller: emailController,
+                keyboardType: TextInputType.emailAddress,
+                labelText: 'Email',
+                hintText: 'Enter your Email',
+                validate: validateEmail,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
+              child: AuthTextField(
+                controller: passwordController,
+                keyboardType: TextInputType.visiblePassword,
+                labelText:
+                    widget.isSignIn == false ? 'Create Password' : 'Password',
+                hintText: 'Enter your Password',
+                validate: validatePassword,
+                obscureText: true,
+              ),
+            ),
+            widget.isSignIn == false
+                ? Padding(
                     padding: const EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
                     child: AuthTextField(
-                      controller: passwordController,
+                      controller: confirmPasswordController,
                       keyboardType: TextInputType.visiblePassword,
-                      labelText: widget.isSignIn == false
-                          ? 'Create Password'
-                          : 'Password',
+                      labelText: 'Confirm Password',
                       hintText: 'Enter your Password',
                       validate: validatePassword,
                       obscureText: true,
                     ),
-                  ),
-                  widget.isSignIn == false
-                      ? Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              0, 10, 0, 10),
-                          child: AuthTextField(
-                            controller: confirmPasswordController,
-                            keyboardType: TextInputType.visiblePassword,
-                            labelText: 'Confirm Password',
-                            hintText: 'Enter your Password',
-                            validate: validatePassword,
-                            obscureText: true,
-                          ),
-                        )
-                      : const SizedBox.shrink(),
-                  widget.isSignIn
-                      ? Align(
-                          alignment: const AlignmentDirectional(-1, 0),
-                          child: GestureDetector(
-                            onTap: () {},
-                            child: Text(
-                              'Forgot Password?',
-                              style: Theme.of(context).textTheme.bodySmall,
-                            ),
-                          ),
-                        )
-                      : const SizedBox.shrink(),
-                  Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
-                    child: ElevatedButton(
-                      onPressed: () {
-                        setState(() {
-                          AuthForm.authError = 'null';
-                        });
-                        if (widget.formKey.currentState!.validate()) {
-                          widget.formKey.currentState!.save();
-                          final name = nameController.text.trim();
-                          final email = emailController.text.trim();
-                          final password = passwordController.text.trim();
-                          widget.onPressed(
-                            name: name,
-                            email: email,
-                            password: password,
-                          );
-                        }
+                  )
+                : const SizedBox.shrink(),
+            widget.isSignIn
+                ? Align(
+                    alignment: const AlignmentDirectional(-1, 0),
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    const ResetPasswordScreen()));
                       },
-                      style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.all(kYellowColor),
-                        foregroundColor:
-                            MaterialStateProperty.all(Colors.white),
-                        textStyle: MaterialStateProperty.all<TextStyle>(
-                          Theme.of(context).textTheme.titleSmall!,
-                        ),
-                        elevation: MaterialStateProperty.all<double>(3.0),
-                        side: MaterialStateProperty.all<BorderSide>(
-                          const BorderSide(
-                            color: Colors.transparent,
-                            width: 1,
-                          ),
-                        ),
-                        shape: MaterialStateProperty.all(
-                          RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                        ),
+                      child: Text(
+                        'Forgot Password?',
+                        style: Theme.of(context).textTheme.bodySmall,
                       ),
-                      child: Text(widget.isSignIn ? 'Sign In' : 'Sign Up'),
+                    ),
+                  )
+                : const SizedBox.shrink(),
+            Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
+              child: ElevatedButton(
+                onPressed: () {
+                  setState(() {
+                    AuthForm.authError = 'null';
+                  });
+                  if (widget.formKey.currentState!.validate()) {
+                    widget.formKey.currentState!.save();
+                    final name = nameController.text.trim();
+                    final email = emailController.text.trim();
+                    final password = passwordController.text.trim();
+                    widget.onPressed(
+                      name: name,
+                      email: email,
+                      password: password,
+                    );
+                  }
+                },
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(kYellowColor),
+                  foregroundColor: MaterialStateProperty.all(Colors.white),
+                  textStyle: MaterialStateProperty.all<TextStyle>(
+                    Theme.of(context).textTheme.titleSmall!,
+                  ),
+                  elevation: MaterialStateProperty.all<double>(3.0),
+                  side: MaterialStateProperty.all<BorderSide>(
+                    const BorderSide(
+                      color: Colors.transparent,
+                      width: 1,
                     ),
                   ),
-                  Row(
-                    children: <Widget>[
-                      Expanded(
-                        child: Container(
-                          height: 2.0,
-                          color: Colors.grey.shade400,
-                        ),
-                      ),
-                      Container(
-                        margin: const EdgeInsets.symmetric(horizontal: 3.0),
-                        child: const Text("OR",
-                            style: TextStyle(color: Colors.black38)),
-                      ),
-                      Expanded(
-                        child: Container(
-                          height: 2.0,
-                          color: Colors.grey.shade400,
-                        ),
-                      ),
-                    ],
+                  shape: MaterialStateProperty.all(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
                   ),
-                  Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        GestureDetector(
-                          onTap: () => widget.signInWithGoogle(),
-                          child: CircleAvatar(
-                            backgroundColor: Colors.white,
-                            child: Center(
-                              child: Image.asset("assets/images/google.png"),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(width: 20),
-                        GestureDetector(
-                          onTap: () => widget.signInWithFacebook(),
-                          child: CircleAvatar(
-                            backgroundColor: Colors.white,
-                            child: Center(
-                              child: Image.asset("assets/images/facebook.png"),
-                            ),
-                          ),
-                        ),
-                      ],
+                ),
+                child: Text(widget.isSignIn ? 'Sign In' : 'Sign Up'),
+              ),
+            ),
+            Row(
+              children: <Widget>[
+                Expanded(
+                  child: Container(
+                    height: 2.0,
+                    color: Colors.grey.shade400,
+                  ),
+                ),
+                Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 3.0),
+                  child:
+                      const Text("OR", style: TextStyle(color: Colors.black38)),
+                ),
+                Expanded(
+                  child: Container(
+                    height: 2.0,
+                    color: Colors.grey.shade400,
+                  ),
+                ),
+              ],
+            ),
+            Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  GestureDetector(
+                    onTap: () => widget.signInWithGoogle(),
+                    child: CircleAvatar(
+                      backgroundColor: Colors.white,
+                      child: Center(
+                        child: Image.asset("assets/images/google.png"),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 20),
+                  GestureDetector(
+                    onTap: () => widget.signInWithFacebook(),
+                    child: CircleAvatar(
+                      backgroundColor: Colors.white,
+                      child: Center(
+                        child: Image.asset("assets/images/facebook.png"),
+                      ),
                     ),
                   ),
                 ],
               ),
             ),
-          ),
+          ],
         ),
       ),
     );
