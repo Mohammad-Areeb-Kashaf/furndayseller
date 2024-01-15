@@ -2,7 +2,7 @@ import 'package:furndayseller/constants.dart';
 import 'package:furndayseller/widgets/auth/auth_layout_widget.dart';
 
 class SignUpScreen extends StatefulWidget {
-  const SignUpScreen({Key? key}) : super(key: key);
+  const SignUpScreen({super.key});
 
   @override
   State<SignUpScreen> createState() => _SignUpScreenState();

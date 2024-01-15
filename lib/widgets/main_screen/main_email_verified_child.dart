@@ -5,22 +5,10 @@ class MainEmailVerifiedChild extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () => FirebaseAuth.instance.signOut().then((value) {
-            GoogleSignIn().signOut();
-            context.mounted
-                ? Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const SignInScreen()))
-                : null;
-          }),
-          child: const Text(
-            'Sign Out',
-            style: TextStyle(color: Colors.black),
-          ),
+    return const InternetChecker(
+      child: Scaffold(
+        body: Center(
+          child: Text('This is the home page'),
         ),
       ),
     );
