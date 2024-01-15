@@ -35,25 +35,25 @@ class AuthTextField extends StatelessWidget {
           borderSide: const BorderSide(
             width: 2,
           ),
-          borderRadius: BorderRadius.circular(0),
+          borderRadius: BorderRadius.circular(8),
         ),
         focusedBorder: OutlineInputBorder(
           borderSide: const BorderSide(
             width: 2,
           ),
-          borderRadius: BorderRadius.circular(0),
+          borderRadius: BorderRadius.circular(8),
         ),
         errorBorder: OutlineInputBorder(
           borderSide: const BorderSide(
             width: 2,
           ),
-          borderRadius: BorderRadius.circular(0),
+          borderRadius: BorderRadius.circular(8),
         ),
         focusedErrorBorder: OutlineInputBorder(
           borderSide: const BorderSide(
             width: 2,
           ),
-          borderRadius: BorderRadius.circular(0),
+          borderRadius: BorderRadius.circular(8),
         ),
         errorMaxLines: 5,
       ),
