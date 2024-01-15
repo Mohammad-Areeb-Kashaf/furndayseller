@@ -101,6 +101,9 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return isEmailVerified
         ? const MainEmailVerifiedChild()
-        : const MainEmailNotVerifiedChild();
+        : MainEmailNotVerifiedChild(
+            canResendEmail: canResendEmail,
+            sendVerificationEmail: () => sendVerificationEmail(),
+          );
   }
 }
